@@ -3,9 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Palestrante Brasil - Agência de Palestrantes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="description" content="Palestrante Brasil - Agencia e plataforma de palestrantes. Conectamos empresas aos maiores especialistas do pais. Transforme seus eventos corporativos com palestras inspiradoras.">
+    <meta name="keywords" content="palestrantes, palestras corporativas, eventos, lideranca, motivacao, inovacao, agencia de palestrantes, brasil">
+    <meta name="author" content="Palestrante Brasil">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Palestrante Brasil - Agencia de Palestrantes">
+    <meta property="og:description" content="Conectamos empresas aos maiores especialistas do pais. Transforme seus eventos corporativos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://palestrantebrasil.com.br">
+    <meta property="og:image" content="image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>Palestrante Brasil - Agencia e Plataforma de Palestrantes</title>
+    <link rel="canonical" href="https://palestrantebrasil.com.br">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Palestrante Brasil",
+        "description": "Agencia e plataforma de palestrantes",
+        "url": "https://palestrantebrasil.com.br",
+        "logo": "image.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+55-11-98765-4321",
+            "contactType": "sales",
+            "areaServed": "BR"
+        }
+    }
+    </script>
     <style>
         :root {
             --primary: #0a0a0a;
@@ -14,237 +43,919 @@
             --accent-dark: #0099cc;
             --gold: #c9a84c;
             --gold-light: #e8d5a3;
-            --light: #f5f5f5;
+            --light: #f8f9fa;
             --dark: #050505;
             --text: #1a1a1a;
             --text-light: #666;
             --white: #ffffff;
+            --gray: #888;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--text); line-height: 1.6; overflow-x: hidden; }
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--light); }
-        ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 4px; }
 
-        .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(5, 5, 5, 0.95); backdrop-filter: blur(20px); padding: 12px 0; transition: all 0.3s ease; }
-        .navbar.scrolled { padding: 8px 0; box-shadow: 0 5px 30px rgba(0,0,0,0.5); }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 30px; display: flex; justify-content: space-between; align-items: center; }
-        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo img { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: 0 0 15px rgba(0, 212, 255, 0.3); }
-        .logo-text { display: flex; flex-direction: column; }
-        .logo-text .brand-name { font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 800; color: var(--white); letter-spacing: 1px; line-height: 1.2; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--light); }
+        ::-webkit-scrollbar-thumb { background: var(--accent-dark); border-radius: 3px; }
+
+        img { max-width: 100%; height: auto; display: block; }
+
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 8px 16px;
+            z-index: 10000;
+            transition: top 0.3s;
+        }
+        .skip-link:focus { top: 0; }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 12px 0;
+            transition: var(--transition);
+        }
+        .navbar.scrolled {
+            padding: 8px 0;
+            box-shadow: 0 5px 30px rgba(0,0,0,0.5);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+        }
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .logo-text .brand-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
         .logo-text .brand-name span { color: var(--accent); }
-        .logo-text .brand-tagline { font-size: 0.65rem; color: var(--accent); text-transform: uppercase; letter-spacing: 3px; font-weight: 500; }
-        .nav-links { display: flex; list-style: none; gap: 40px; align-items: center; }
-        .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-weight: 500; font-size: 0.9rem; letter-spacing: 0.5px; transition: color 0.3s; position: relative; }
-        .nav-links a::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px; background: var(--accent); transition: width 0.3s; }
+        .logo-text .brand-tagline {
+            font-size: 0.6rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
         .nav-links a:hover::after { width: 100%; }
         .nav-links a:hover { color: var(--accent); }
-        .btn-nav { background: var(--accent); color: var(--dark) !important; padding: 12px 28px; border-radius: 50px; font-weight: 700; transition: all 0.3s !important; }
-        .btn-nav:hover { background: var(--white); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3); }
+        .btn-nav {
+            background: var(--accent);
+            color: var(--dark) !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            transition: var(--transition) !important;
+        }
+        .btn-nav:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+        }
         .btn-nav::after { display: none !important; }
-        .mobile-menu-btn { display: none; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+        }
 
-        .hero { min-height: 100vh; background: var(--dark); position: relative; display: flex; align-items: center; overflow: hidden; }
-        .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(201, 168, 76, 0.08) 0%, transparent 50%), linear-gradient(135deg, var(--dark) 0%, #0d1b2a 100%); }
-        .hero-particles { position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; }
-        .particle { position: absolute; width: 4px; height: 4px; background: var(--accent); border-radius: 50%; opacity: 0.3; animation: float 15s infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.3; } 90% { opacity: 0.3; } 100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; } }
-        .hero-content { max-width: 1400px; margin: 0 auto; padding: 120px 30px 80px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 2; }
-        .hero-text h1 { font-family: 'Montserrat', sans-serif; font-size: 3.5rem; font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 25px; }
-        .hero-text h1 .highlight { color: var(--accent); position: relative; }
-        .hero-text h1 .highlight::after { content: ''; position: absolute; bottom: 5px; left: 0; right: 0; height: 8px; background: rgba(0, 212, 255, 0.2); z-index: -1; }
-        .hero-text p { font-size: 1.15rem; color: rgba(255,255,255,0.7); margin-bottom: 40px; line-height: 1.8; max-width: 500px; }
-        .hero-buttons { display: flex; gap: 20px; flex-wrap: wrap; }
-        .btn-primary { background: var(--accent); color: var(--dark); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 0.95rem; letter-spacing: 0.5px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; border: none; cursor: pointer; }
-        .btn-primary:hover { background: var(--white); transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3); }
-        .btn-outline { background: transparent; color: var(--white); padding: 16px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.5px; transition: all 0.3s; display: inline-flex; align-items: center; gap: 10px; border: 2px solid rgba(255,255,255,0.3); }
-        .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-3px); }
-        .hero-stats { display: flex; gap: 40px; margin-top: 50px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); }
-        .stat-item h3 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: var(--accent); font-weight: 800; }
-        .stat-item p { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin: 0; text-transform: uppercase; letter-spacing: 1px; }
-        .hero-image { position: relative; }
-        .hero-image-wrapper { position: relative; border-radius: 20px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,0.4); }
-        .hero-image-wrapper img { width: 100%; height: 500px; object-fit: cover; display: block; }
-        .hero-image-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(5,5,5,0.9) 0%, transparent 100%); padding: 40px; }
-        .hero-image-overlay h4 { color: var(--accent); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .hero-image-overlay p { color: var(--white); font-size: 1.1rem; font-weight: 600; margin: 0; }
-        .floating-card { position: absolute; background: var(--white); border-radius: 15px; padding: 20px 25px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); animation: float-card 4s ease-in-out infinite; }
-        .floating-card.card-1 { top: -20px; right: -30px; animation-delay: 0s; }
-        .floating-card.card-2 { bottom: 60px; left: -40px; animation-delay: 2s; }
-        @keyframes float-card { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        .floating-card i { font-size: 1.5rem; color: var(--accent); margin-bottom: 8px; }
-        .floating-card h5 { font-size: 0.9rem; font-weight: 700; color: var(--primary); margin-bottom: 3px; }
-        .floating-card span { font-size: 0.75rem; color: var(--text-light); }
+        /* Hero Video Background */
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark);
+        }
+        .hero-video-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 1;
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(180deg, rgba(5,5,5,0.3) 0%, rgba(5,5,5,0.7) 50%, rgba(5,5,5,0.95) 100%);
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            max-width: 900px;
+            padding: 120px 20px 60px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            color: var(--accent);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            animation: fadeInDown 1s ease;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+        .hero h1 .highlight {
+            background: linear-gradient(135deg, var(--accent), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 40px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--dark);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-primary:hover {
+            background: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3);
+        }
+        .btn-outline {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        .btn-white {
+            background: var(--white);
+            color: var(--dark);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-white:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 3;
+            animation: bounce 2s infinite;
+        }
+        .scroll-indicator i {
+            color: var(--accent);
+            font-size: 1.5rem;
+        }
 
-        .clients { background: var(--light); padding: 50px 0; overflow: hidden; }
-        .clients-track { display: flex; gap: 80px; animation: scroll 30s linear infinite; width: max-content; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-        .client-logo { font-size: 1.3rem; font-weight: 700; color: #bbb; white-space: nowrap; letter-spacing: 1px; text-transform: uppercase; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
 
-        .section { padding: 100px 0; }
-        .section-header { text-align: center; max-width: 700px; margin: 0 auto 60px; }
-        .section-label { display: inline-block; color: var(--accent-dark); font-weight: 600; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 15px; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--primary); margin-bottom: 20px; line-height: 1.2; }
-        .section-desc { color: var(--text-light); font-size: 1.05rem; line-height: 1.7; }
-        .container { max-width: 1400px; margin: 0 auto; padding: 0 30px; }
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--dark);
+            padding: 60px 0;
+            position: relative;
+            z-index: 4;
+            margin-top: -1px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        .stat-item .number {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .stat-item .label {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+        }
 
-        .categories { background: var(--white); }
-        .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 25px; }
-        .category-card { background: var(--light); border-radius: 20px; padding: 40px 30px; text-align: center; transition: all 0.4s; cursor: pointer; border: 2px solid transparent; position: relative; overflow: hidden; }
-        .category-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: var(--accent); transform: scaleX(0); transition: transform 0.4s; }
-        .category-card:hover::before { transform: scaleX(1); }
-        .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); border-color: rgba(0, 212, 255, 0.2); }
-        .category-icon { width: 70px; height: 70px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 1.5rem; color: var(--accent-dark); box-shadow: 0 5px 20px rgba(0,0,0,0.05); transition: all 0.3s; }
-        .category-card:hover .category-icon { background: var(--accent); color: var(--dark); transform: scale(1.1); }
-        .category-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
-        .category-card p { font-size: 0.85rem; color: var(--text-light); line-height: 1.6; }
+        /* Section Base */
+        .section {
+            padding: 100px 0;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+        .section-label {
+            display: inline-block;
+            color: var(--accent-dark);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .section-desc {
+            color: var(--text-light);
+            font-size: 1.05rem;
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
 
-        .speakers { background: var(--light); }
-        .speakers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-        .speaker-card { background: var(--white); border-radius: 20px; overflow: hidden; transition: all 0.4s; position: relative; }
-        .speaker-card:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.12); }
-        .speaker-image { position: relative; overflow: hidden; height: 300px; }
-        .speaker-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-        .speaker-card:hover .speaker-image img { transform: scale(1.1); }
-        .speaker-badge { position: absolute; top: 15px; right: 15px; background: var(--accent); color: var(--dark); padding: 5px 15px; border-radius: 20px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-        .speaker-overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 20px; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%); opacity: 0; transition: opacity 0.3s; }
-        .speaker-card:hover .speaker-overlay { opacity: 1; }
-        .speaker-social { display: flex; gap: 10px; justify-content: center; }
-        .speaker-social a { width: 35px; height: 35px; background: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--primary); text-decoration: none; transition: all 0.3s; }
-        .speaker-social a:hover { background: var(--accent); color: var(--dark); }
-        .speaker-info { padding: 25px; }
-        .speaker-info h3 { font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
-        .speaker-info .role { font-size: 0.85rem; color: var(--accent-dark); font-weight: 600; margin-bottom: 10px; }
-        .speaker-info .topics { font-size: 0.8rem; color: var(--text-light); line-height: 1.5; }
-        .speaker-info .rating { display: flex; align-items: center; gap: 5px; margin-top: 12px; font-size: 0.85rem; }
-        .speaker-info .rating i { color: var(--gold); }
-        .speaker-info .rating span { color: var(--text-light); }
-        .view-all-btn { text-align: center; margin-top: 50px; }
+        /* Cards Grid - 3 cols like PSA */
+        .cards-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .card-feature {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .card-feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+        }
+        .card-feature .card-image {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+        .card-feature .card-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .card-feature:hover .card-image img { transform: scale(1.1); }
+        .card-feature .card-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 60%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+        }
+        .card-feature .card-content {
+            padding: 30px;
+        }
+        .card-feature h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        .card-feature p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+        .card-feature .card-icon {
+            width: 50px; height: 50px;
+            background: var(--accent);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-size: 1.2rem;
+        }
 
-        .featured-speaker { background: var(--dark); position: relative; overflow: hidden; }
-        .featured-speaker .section-label { color: var(--accent); }
-        .featured-speaker .section-title { color: var(--white); }
-        .featured-speaker .section-desc { color: rgba(255,255,255,0.6); }
-        .featured-content { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .featured-logo { text-align: center; position: relative; }
-        .featured-logo img { max-width: 400px; width: 100%; border-radius: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.5); }
-        .featured-logo::before { content: ''; position: absolute; top: -20px; left: -20px; right: -20px; bottom: -20px; border: 2px solid rgba(201, 168, 76, 0.2); border-radius: 30px; z-index: -1; }
-        .featured-info h3 { font-family: 'Montserrat', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--white); margin-bottom: 10px; }
-        .featured-info .subtitle { color: var(--gold); font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 25px; }
-        .featured-info p { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px; }
-        .featured-topics { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 35px; }
-        .featured-topics span { background: rgba(0, 212, 255, 0.1); border: 1px solid rgba(0, 212, 255, 0.3); color: var(--accent); padding: 8px 18px; border-radius: 50px; font-size: 0.85rem; font-weight: 500; }
-        .featured-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
+        /* Dark Section */
+        .section-dark {
+            background: var(--dark);
+        }
+        .section-dark .section-title { color: var(--white); }
+        .section-dark .section-desc { color: rgba(255,255,255,0.6); }
+        .section-dark .section-label { color: var(--accent); }
 
-        .how-it-works { background: var(--white); }
-        .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; position: relative; }
-        .steps-grid::before { content: ''; position: absolute; top: 50px; left: 12%; right: 12%; height: 2px; background: linear-gradient(to right, var(--gold), var(--accent)); z-index: 0; }
-        .step-card { text-align: center; position: relative; z-index: 1; }
-        .step-number { width: 100px; height: 100px; background: var(--white); border: 3px solid var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px; font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent-dark); position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .step-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
-        .step-card p { font-size: 0.9rem; color: var(--text-light); line-height: 1.6; }
+        /* About Text */
+        .about-text {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 0 20px;
+        }
+        .about-text p {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .about-text strong {
+            color: var(--accent);
+            font-weight: 600;
+        }
 
-        .testimonials { background: var(--dark); position: relative; overflow: hidden; }
-        .testimonials .section-label { color: var(--accent); }
-        .testimonials .section-title { color: var(--white); }
-        .testimonials .section-desc { color: rgba(255,255,255,0.6); }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
-        .testimonial-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; transition: all 0.4s; position: relative; }
-        .testimonial-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-5px); }
-        .testimonial-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--accent); opacity: 0.3; position: absolute; top: 10px; left: 20px; line-height: 1; }
-        .testimonial-text { font-size: 0.95rem; color: rgba(255,255,255,0.8); line-height: 1.8; margin-bottom: 25px; font-style: italic; }
-        .testimonial-author { display: flex; align-items: center; gap: 15px; }
-        .testimonial-author img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); }
-        .testimonial-author-info h4 { color: var(--white); font-size: 0.95rem; font-weight: 600; }
-        .testimonial-author-info p { color: var(--accent); font-size: 0.8rem; }
-        .testimonial-stars { color: var(--gold); margin-bottom: 15px; font-size: 0.9rem; }
+        /* Featured Speaker Section */
+        .featured-speaker-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #0d1b2a 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .featured-speaker-section::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(0,212,255,0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .featured-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .featured-logo-wrap {
+            text-align: center;
+            position: relative;
+        }
+        .featured-logo-wrap img {
+            max-width: 450px;
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+        }
+        .featured-info h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        .featured-info .subtitle {
+            color: var(--gold);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 25px;
+        }
+        .featured-info p {
+            color: rgba(255,255,255,0.7);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+        .featured-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+        .featured-topics span {
+            background: rgba(0, 212, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: var(--accent);
+            padding: 8px 18px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
 
-        .cta { background: var(--accent); position: relative; overflow: hidden; padding: 100px 0; }
-        .cta-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 10% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 90% 50%, rgba(255,255,255,0.1) 0%, transparent 50%); }
-        .cta-content { text-align: center; position: relative; z-index: 1; max-width: 800px; margin: 0 auto; }
-        .cta-content h2 { font-family: 'Montserrat', sans-serif; font-size: 3rem; font-weight: 800; color: var(--dark); margin-bottom: 20px; }
-        .cta-content p { font-size: 1.1rem; color: rgba(0,0,0,0.7); margin-bottom: 40px; line-height: 1.7; }
-        .cta-btn { background: var(--dark); color: var(--white); padding: 18px 50px; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
-        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(0,0,0,0.3); background: var(--primary); }
+        /* Clients */
+        .clients-section {
+            background: var(--light);
+            padding: 60px 0;
+            overflow: hidden;
+        }
+        .clients-track {
+            display: flex;
+            gap: 80px;
+            animation: scroll 25s linear infinite;
+            width: max-content;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .client-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ccc;
+            white-space: nowrap;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
 
-        .footer { background: var(--dark); padding: 80px 0 30px; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        /* Testimonials */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 40px 30px;
+            transition: var(--transition);
+            position: relative;
+        }
+        .testimonial-card:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.2);
+        }
+        .testimonial-card::before {
+            content: '"';
+            font-family: Georgia, serif;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            position: absolute;
+            top: 10px; left: 20px;
+            line-height: 1;
+        }
+        .testimonial-stars {
+            color: var(--gold);
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+        }
+        .testimonial-text {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .testimonial-author img {
+            width: 45px; height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent);
+        }
+        .testimonial-author-info h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .testimonial-author-info p {
+            color: var(--accent);
+            font-size: 0.75rem;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background: var(--light);
+        }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+        .contact-info h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        .contact-info p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .contact-item i {
+            width: 45px; height: 45px;
+            background: var(--accent);
+            color: var(--dark);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .contact-item div h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 2px;
+        }
+        .contact-item div p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin: 0;
+        }
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #eee;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.3s;
+            background: var(--white);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--accent);
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .form-submit {
+            width: 100%;
+            background: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .form-submit:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            padding: 80px 0 30px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
         .footer-brand .logo { margin-bottom: 20px; display: inline-flex; }
-        .footer-brand p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.8; margin-bottom: 25px; }
-        .footer-social { display: flex; gap: 15px; }
-        .footer-social a { width: 40px; height: 40px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--white); text-decoration: none; transition: all 0.3s; }
-        .footer-social a:hover { background: var(--accent); color: var(--dark); transform: translateY(-3px); }
-        .footer-column h4 { color: var(--white); font-size: 1rem; font-weight: 700; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+        .footer-brand p {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.85rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        .footer-social {
+            display: flex;
+            gap: 12px;
+        }
+        .footer-social a {
+            width: 40px; height: 40px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        .footer-social a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
         .footer-column ul { list-style: none; }
-        .footer-column ul li { margin-bottom: 12px; }
-        .footer-column ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+        .footer-column ul li { margin-bottom: 10px; }
+        .footer-column ul li a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
         .footer-column ul li a:hover { color: var(--accent); }
-        .footer-contact p { color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
-        .footer-contact i { color: var(--accent); width: 20px; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; display: flex; justify-content: space-between; align-items: center; }
-        .footer-bottom p { color: rgba(255,255,255,0.4); font-size: 0.85rem; }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .footer-bottom p {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+        }
 
-        .mobile-menu { position: fixed; top: 0; right: -100%; width: 80%; max-width: 400px; height: 100vh; background: var(--dark); z-index: 2000; padding: 80px 40px; transition: right 0.4s ease; box-shadow: -10px 0 30px rgba(0,0,0,0.3); }
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0; right: -100%;
+            width: 85%;
+            max-width: 380px;
+            height: 100vh;
+            background: var(--dark);
+            z-index: 2000;
+            padding: 80px 30px;
+            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.4);
+            overflow-y: auto;
+        }
         .mobile-menu.active { right: 0; }
-        .mobile-menu-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--white); font-size: 1.5rem; cursor: pointer; }
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px; right: 20px;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 8px;
+        }
         .mobile-menu ul { list-style: none; }
-        .mobile-menu ul li { margin-bottom: 25px; }
-        .mobile-menu ul li a { color: var(--white); text-decoration: none; font-size: 1.2rem; font-weight: 600; transition: color 0.3s; }
+        .mobile-menu ul li { margin-bottom: 8px; }
+        .mobile-menu ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: color 0.3s;
+        }
         .mobile-menu ul li a:hover { color: var(--accent); }
-        .overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 1500; opacity: 0; visibility: hidden; transition: all 0.3s; }
+        .mobile-menu .btn-nav {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6);
+            z-index: 1500;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            backdrop-filter: blur(4px);
+        }
         .overlay.active { opacity: 1; visibility: visible; }
 
-        .search-bar { background: var(--white); padding: 30px; border-radius: 20px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); margin-top: -60px; position: relative; z-index: 10; display: flex; gap: 15px; flex-wrap: wrap; }
-        .search-input { flex: 1; min-width: 200px; padding: 15px 25px; border: 2px solid #eee; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; }
-        .search-input:focus { border-color: var(--accent); }
-        .search-select { padding: 15px 25px; border: 2px solid #eee; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-size: 0.95rem; outline: none; background: var(--white); cursor: pointer; min-width: 180px; }
-        .search-btn { background: var(--accent); color: var(--dark); border: none; padding: 15px 40px; border-radius: 50px; font-family: 'Montserrat', sans-serif; font-weight: 700; cursor: pointer; transition: all 0.3s; }
-        .search-btn:hover { background: var(--accent-dark); transform: translateY(-2px); }
-
-        .fade-in { opacity: 0; transform: translateY(30px); transition: all 0.6s ease; }
-        .fade-in.visible { opacity: 1; transform: translateY(0); }
-
-        @media (max-width: 1200px) {
-            .hero-text h1 { font-size: 2.8rem; }
-            .categories-grid { grid-template-columns: repeat(2, 1fr); }
-            .speakers-grid { grid-template-columns: repeat(3, 1fr); }
-            .steps-grid { grid-template-columns: repeat(2, 1fr); }
-            .steps-grid::before { display: none; }
-            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
-            .featured-content { grid-template-columns: 1fr; }
-            .featured-logo { margin-bottom: 40px; }
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .cards-grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .contact-grid { grid-template-columns: 1fr; }
+            .featured-content { grid-template-columns: 1fr; gap: 40px; }
+            .featured-logo-wrap { order: -1; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
         @media (max-width: 768px) {
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero-content { grid-template-columns: 1fr; text-align: center; padding-top: 100px; }
-            .hero-text h1 { font-size: 2rem; }
-            .hero-text p { margin: 0 auto 30px; }
-            .hero-buttons { justify-content: center; }
-            .hero-stats { justify-content: center; }
-            .hero-image { display: none; }
-            .categories-grid { grid-template-columns: 1fr; }
-            .speakers-grid { grid-template-columns: 1fr; }
-            .steps-grid { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .cards-grid-3 { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .stat-item { padding: 15px; }
+            .stat-item .number { font-size: 2rem; }
             .testimonials-grid { grid-template-columns: 1fr; }
-            .cta-content h2 { font-size: 2rem; }
-            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
-            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+            .footer-grid { grid-template-columns: 1fr; gap: 35px; }
+            .footer-bottom { flex-direction: column; text-align: center; }
             .section { padding: 60px 0; }
-            .section-title { font-size: 2rem; }
-            .featured-logo img { max-width: 280px; }
-            .featured-info h3 { font-size: 1.6rem; }
+            .contact-form { padding: 25px; }
+            .form-row { grid-template-columns: 1fr; }
+            .featured-logo-wrap img { max-width: 300px; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .hero-buttons a { width: 100%; justify-content: center; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .stat-item .number { font-size: 1.8rem; }
+            .stat-item .label { font-size: 0.7rem; }
         }
     </style>
 </head>
 <body>
+    <a href="#main" class="skip-link">Pular para o conteudo principal</a>
     <!-- Navigation -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Menu principal">
         <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="image.png" alt="Palestrante Brasil">
+            <a href="#" class="logo" aria-label="Palestrante Brasil - Pagina inicial">
+                <img src="image.png" alt="Logo Palestrante Brasil" width="45" height="45" loading="eager">
                 <div class="logo-text">
                     <span class="brand-name">PALESTRANTE <span>BRASIL</span></span>
                     <span class="brand-tagline">Agencia de Palestrantes</span>
@@ -252,333 +963,165 @@
             </a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicos">Servicos</a></li>
                 <li><a href="#palestrantes">Palestrantes</a></li>
-                <li><a href="#categorias">Categorias</a></li>
                 <li><a href="#destaque">Destaque</a></li>
                 <li><a href="#depoimentos">Depoimentos</a></li>
-                <li><a href="#como-funciona">Como Funciona</a></li>
                 <li><a href="#contato" class="btn-nav">Solicitar Orcamento</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn">
-                <i class="fas fa-bars"></i>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </button>
         </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div class="overlay" id="overlay"></div>
-    <div class="mobile-menu" id="mobileMenu">
-        <button class="mobile-menu-close" id="mobileMenuClose">
-            <i class="fas fa-times"></i>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Menu mobile" aria-modal="true">
+        <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Fechar menu">
+            <i class="fas fa-times" aria-hidden="true"></i>
         </button>
         <ul>
             <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicos">Servicos</a></li>
             <li><a href="#palestrantes">Palestrantes</a></li>
-            <li><a href="#categorias">Categorias</a></li>
             <li><a href="#destaque">Destaque</a></li>
             <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#como-funciona">Como Funciona</a></li>
-            <li><a href="#contato">Solicitar Orcamento</a></li>
+            <li><a href="#contato" class="btn-nav">Solicitar Orcamento</a></li>
         </ul>
     </div>
 
     <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-bg"></div>
-        <div class="hero-particles" id="particles"></div>
+    <section class="hero" id="inicio" role="banner">
+        <video class="hero-video-bg" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&h=1080&fit=crop">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-people-dancing-at-a-concert-1233-large.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Encontre o <span class="highlight">palestrante perfeito</span> para seu evento</h1>
-                <p>A <strong>Palestrante Brasil</strong> conecta empresas aos maiores especialistas do pais. Transforme seus eventos corporativos com palestras inspiradoras e conteudo de alto impacto.</p>
-                <div class="hero-buttons">
-                    <a href="#palestrantes" class="btn-primary">
-                        <i class="fas fa-search"></i>
-                        Explorar Palestrantes
-                    </a>
-                    <a href="#contato" class="btn-outline">
-                        <i class="fas fa-phone"></i>
-                        Fale Conosco
-                    </a>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <h3>500+</h3>
-                        <p>Palestrantes</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>2.000+</h3>
-                        <p>Eventos Realizados</p>
-                    </div>
-                    <div class="stat-item">
-                        <h3>98%</h3>
-                        <p>Satisfacao Clientes</p>
-                    </div>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="hero-image-wrapper">
-                    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=500&fit=crop" alt="Palestrante em evento">
-                    <div class="hero-image-overlay">
-                        <h4>Destaque da Semana</h4>
-                        <p>Transforme sua proxima convencao</p>
-                    </div>
-                </div>
-                <div class="floating-card card-1">
-                    <i class="fas fa-star"></i>
-                    <h5>4.9/5</h5>
-                    <span>Avaliacao Media</span>
-                </div>
-                <div class="floating-card card-2">
-                    <i class="fas fa-users"></i>
-                    <h5>10k+</h5>
-                    <span>Participantes/Ano</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Search Bar -->
-    <div class="container">
-        <div class="search-bar fade-in">
-            <input type="text" class="search-input" placeholder="Buscar por nome, tema ou especialidade...">
-            <select class="search-select">
-                <option value="">Todas as Categorias</option>
-                <option value="lideranca">Lideranca</option>
-                <option value="motivacao">Motivacao</option>
-                <option value="inovacao">Inovacao</option>
-                <option value="vendas">Vendas</option>
-                <option value="saude">Saude & Bem-estar</option>
-            </select>
-            <select class="search-select">
-                <option value="">Investimento</option>
-                <option value="ate-5k">Ate R$ 5.000</option>
-                <option value="5k-15k">R$ 5.000 - R$ 15.000</option>
-                <option value="15k-30k">R$ 15.000 - R$ 30.000</option>
-                <option value="acima-30k">Acima de R$ 30.000</option>
-            </select>
-            <button class="search-btn">
-                <i class="fas fa-search"></i> Buscar
-            </button>
-        </div>
-    </div>
-
-    <!-- Clients -->
-    <section class="clients">
-        <div class="clients-track">
-            <span class="client-logo">Petrobras</span>
-            <span class="client-logo">Itau Unibanco</span>
-            <span class="client-logo">Bradesco</span>
-            <span class="client-logo">Vale</span>
-            <span class="client-logo">Ambev</span>
-            <span class="client-logo">Natura</span>
-            <span class="client-logo">Magalu</span>
-            <span class="client-logo">Santander</span>
-            <span class="client-logo">B3</span>
-            <span class="client-logo">Localiza</span>
-            <span class="client-logo">Petrobras</span>
-            <span class="client-logo">Itau Unibanco</span>
-            <span class="client-logo">Bradesco</span>
-            <span class="client-logo">Vale</span>
-            <span class="client-logo">Ambev</span>
-            <span class="client-logo">Natura</span>
-            <span class="client-logo">Magalu</span>
-            <span class="client-logo">Santander</span>
-            <span class="client-logo">B3</span>
-            <span class="client-logo">Localiza</span>
-        </div>
-    </section>
-
-    <!-- Categories -->
-    <section class="section categories" id="categorias">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Nossas Especialidades</span>
-                <h2 class="section-title">Categorias de Palestras</h2>
-                <p class="section-desc">Encontre o especialista ideal para o tema do seu evento. Temos os melhores profissionais em cada area.</p>
-            </div>
-            <div class="categories-grid">
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-chess-king"></i></div>
-                    <h3>Lideranca</h3>
-                    <p>Desenvolva lideres extraordinarios com palestrantes especialistas em gestao e lideranca transformacional.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-rocket"></i></div>
-                    <h3>Motivacao</h3>
-                    <p>Inspire sua equipe com historias de superacao e tecnicas comprovadas de motivacao e engajamento.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-lightbulb"></i></div>
-                    <h3>Inovacao</h3>
-                    <p>Transforme sua organizacao com insights sobre inovacao, tecnologia e futuro dos negocios.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-chart-line"></i></div>
-                    <h3>Vendas</h3>
-                    <p>Aumente seus resultados com tecnicas avancadas de vendas, negociacao e relacionamento com clientes.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-heartbeat"></i></div>
-                    <h3>Saude & Bem-estar</h3>
-                    <p>Promova qualidade de vida no trabalho com especialistas em saude mental, mindfulness e bem-estar.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-balance-scale"></i></div>
-                    <h3>Diversidade & Inclusao</h3>
-                    <p>Construa ambientes mais inclusivos com palestras sobre diversidade, equidade e pertencimento.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-hand-holding-usd"></i></div>
-                    <h3>Financas & Economia</h3>
-                    <p>Entenda o cenario economico com economistas renomados e especialistas em financas corporativas.</p>
-                </div>
-                <div class="category-card fade-in">
-                    <div class="category-icon"><i class="fas fa-brain"></i></div>
-                    <h3>Inteligencia Emocional</h3>
-                    <p>Desenvolva habilidades socioemocionais essenciais para o sucesso pessoal e profissional.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Speakers -->
-    <section class="section speakers" id="palestrantes">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Nossos Talentos</span>
-                <h2 class="section-title">Palestrantes em Destaque</h2>
-                <p class="section-desc">Conheca alguns dos profissionais mais requisitados do nosso catalogo. Cada um traz experiencia unica e conteudo de alto impacto.</p>
-            </div>
-            <div class="speakers-grid">
-                <div class="speaker-card fade-in">
-                    <div class="speaker-image">
-                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face" alt="Palestrante">
-                        <span class="speaker-badge">Top Rated</span>
-                        <div class="speaker-overlay">
-                            <div class="speaker-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Ricardo Mendes</h3>
-                        <p class="role">Especialista em Lideranca</p>
-                        <p class="topics">Lideranca Transformacional &middot; Gestao de Equipes &middot; Cultura Organizacional</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>4.9 (127 avaliacoes)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="speaker-card fade-in">
-                    <div class="speaker-image">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face" alt="Palestrante">
-                        <span class="speaker-badge">Mais Contratada</span>
-                        <div class="speaker-overlay">
-                            <div class="speaker-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Carolina Andrade</h3>
-                        <p class="role">Coach Executiva &amp; Motivacional</p>
-                        <p class="topics">Motivacao &middot; Alta Performance &middot; Resiliencia &middot; Proposito</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>5.0 (203 avaliacoes)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="speaker-card fade-in">
-                    <div class="speaker-image">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" alt="Palestrante">
-                        <span class="speaker-badge">Inovacao</span>
-                        <div class="speaker-overlay">
-                            <div class="speaker-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Felipe Torres</h3>
-                        <p class="role">Especialista em Inovacao Digital</p>
-                        <p class="topics">Transformacao Digital &middot; IA &middot; Futuro do Trabalho &middot; Startups</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            <span>4.8 (89 avaliacoes)</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="speaker-card fade-in">
-                    <div class="speaker-image">
-                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face" alt="Palestrante">
-                        <span class="speaker-badge">Saude</span>
-                        <div class="speaker-overlay">
-                            <div class="speaker-social">
-                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Marina Costa</h3>
-                        <p class="role">Medica &amp; Especialista em Bem-estar</p>
-                        <p class="topics">Saude Mental &middot; Mindfulness &middot; Qualidade de Vida &middot; Burnout</p>
-                        <div class="rating">
-                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            <span>4.9 (156 avaliacoes)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="view-all-btn fade-in">
-                <a href="#" class="btn-primary">
-                    <i class="fas fa-th-large"></i>
-                    Ver Todos os Palestrantes
+            <span class="hero-badge">Bem-vindos a nova era</span>
+            <h1>O palco onde o <span class="highlight">conhecimento transforma vidas</span></h1>
+            <p class="hero-subtitle">A Palestrante Brasil conecta empresas aos maiores especialistas do pais. Transforme seus eventos corporativos com palestras que inspiram, educam e transformam.</p>
+            <div class="hero-buttons">
+                <a href="#palestrantes" class="btn-primary">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                    Contratar Palestrante
                 </a>
+                <a href="#servicos" class="btn-outline">
+                    <i class="fas fa-play" aria-hidden="true"></i>
+                    Conheca Nossos Servicos
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar" aria-label="Estatisticas">
+        <div class="stats-grid">
+            <div class="stat-item reveal">
+                <div class="number" data-target="500">0</div>
+                <div class="label">Palestrantes Cadastrados</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-1">
+                <div class="number" data-target="2000">0</div>
+                <div class="label">Conteudos Gravados</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-2">
+                <div class="number" data-target="800">0</div>
+                <div class="label">Empresas Atendidas</div>
+            </div>
+            <div class="stat-item reveal reveal-delay-3">
+                <div class="number" data-target="500000">0</div>
+                <div class="label">Pessoas Impactadas/Ano</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="servicos">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-label">O que oferecemos</span>
+                <h2 class="section-title">Nossos Servicos</h2>
+                <p class="section-desc">O universo ideal para quem busca transformar eventos em experiencias memoraveis de conhecimento.</p>
+            </div>
+            <div class="cards-grid-3">
+                <article class="card-feature reveal">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600&h=400&fit=crop" alt="Contratar palestrante para evento" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-microphone-alt"></i></div>
+                        <h3>Contrate um Palestrante</h3>
+                        <p>Transforme seu evento em um espetaculo de conhecimento. Temos os melhores especialistas em cada area para elevar seu evento.</p>
+                    </div>
+                </article>
+                <article class="card-feature reveal reveal-delay-1">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=400&fit=crop" alt="Desenvolvimento de palestrantes" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Desenvolva sua Carreira</h3>
+                        <p>O universo ideal para palestrantes que buscam transformar suas palestras em negocios de sucesso. Mentoria e suporte completo.</p>
+                    </div>
+                </article>
+                <article class="card-feature reveal reveal-delay-2">
+                    <div class="card-image">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop" alt="Conteudo exclusivo de palestras" loading="lazy">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-icon"><i class="fas fa-video"></i></div>
+                        <h3>Conteudo Exclusivo</h3>
+                        <p>Historias inspiradoras e conhecimento profundo para expandir sua forma de pensar, sentir e ascender. Acesse nossa biblioteca.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section section-dark" id="sobre">
+        <div class="container">
+            <div class="about-text reveal">
+                <p>Há mais de uma decada a <strong>Palestrante Brasil</strong> se comprometeu a dar palco, significado e alma para as mentes mais brilhantes do pais. Nada mudou — mas mudou tudo. Um novo ponto de vista muda a vista toda.</p>
             </div>
         </div>
     </section>
 
     <!-- Featured Speaker - Roberto Patzlaff -->
-    <section class="section featured-speaker" id="destaque">
+    <section class="section featured-speaker-section" id="destaque">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header reveal">
                 <span class="section-label">Palestrante em Destaque</span>
                 <h2 class="section-title">Conheca Nosso Especialista</h2>
-                <p class="section-desc">Um dos profissionais mais renomados do nosso catalogo, trazendo anos de experiencia e transformacao para empresas de todo o Brasil.</p>
+                <p class="section-desc">Um dos profissionais mais renomados do nosso catalogo, trazendo anos de experiencia e transformacao.</p>
             </div>
-            <div class="featured-content fade-in">
-                <div class="featured-logo">
-                    <img src="image(1).png" alt="Roberto Patzlaff - Mentor e Palestrante">
+            <div class="featured-content">
+                <div class="featured-logo-wrap reveal">
+                    <img src="image(1).png" alt="Roberto Patzlaff - Mentor e Palestrante" loading="lazy">
                 </div>
-                <div class="featured-info">
-                    <h3>Roberto Patzlaff</h3>
+                <div class="featured-info reveal reveal-delay-1">
+                    <h2>Roberto Patzlaff</h2>
                     <p class="subtitle">Mentor e Palestrante</p>
-                    <p>Roberto Patzlaff e um dos palestrantes mais requisitados do Brasil, com vasta experiencia em desenvolvimento humano, lideranca e alta performance. Sua abordagem unica combina neurociencia, inteligencia emocional e estrategias praticas que geram resultados imediatos nas organizacoes.</p>
+                    <p>Roberto Patzlaff e um dos palestrantes mais requisitados do Brasil, com vasta experiencia em desenvolvimento humano, lideranca e alta performance. Sua abordagem unica combina neurociencia, inteligencia emocional e estrategias praticas.</p>
                     <div class="featured-topics">
                         <span>Desenvolvimento Humano</span>
                         <span>Lideranca</span>
                         <span>Alta Performance</span>
                         <span>Inteligencia Emocional</span>
                         <span>Coaching Executivo</span>
-                        <span>Transformacao Cultural</span>
                     </div>
-                    <div class="featured-buttons">
-                        <a href="#" class="btn-primary">
-                            <i class="fas fa-calendar-check"></i>
+                    <div class="hero-buttons" style="justify-content: flex-start;">
+                        <a href="#contato" class="btn-primary">
+                            <i class="fas fa-calendar-check" aria-hidden="true"></i>
                             Solicitar Palestra
                         </a>
                         <a href="#" class="btn-outline">
-                            <i class="fas fa-play-circle"></i>
-                            Ver Video de Apresentacao
+                            <i class="fas fa-play-circle" aria-hidden="true"></i>
+                            Ver Apresentacao
                         </a>
                     </div>
                 </div>
@@ -586,157 +1129,224 @@
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="section how-it-works" id="como-funciona">
-        <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">Processo Simples</span>
-                <h2 class="section-title">Como Funciona</h2>
-                <p class="section-desc">Em poucos passos, voce encontra e contrata o palestrante ideal para seu evento com total seguranca.</p>
-            </div>
-            <div class="steps-grid">
-                <div class="step-card fade-in">
-                    <div class="step-number">01</div>
-                    <h3>Defina sua Necessidade</h3>
-                    <p>Nos conte sobre seu evento: tema, publico, data e orcamento. Nossa equipe entendera exatamente o que voce precisa.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">02</div>
-                    <h3>Receba Sugestoes</h3>
-                    <p>Apresentamos opcoes de palestrantes alinhados ao seu perfil, com portfolio completo e videos de apresentacoes.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">03</div>
-                    <h3>Escolha e Negocie</h3>
-                    <p>Selecione o profissional ideal e negociamos os melhores valores para voce, com total transparencia.</p>
-                </div>
-                <div class="step-card fade-in">
-                    <div class="step-number">04</div>
-                    <h3>Evento de Sucesso</h3>
-                    <p>Cuidamos de toda a logistica. Voce acompanha o evento com tranquilidade e garantia de excelencia.</p>
-                </div>
-            </div>
+    <!-- Clients Section -->
+    <section class="clients-section" aria-label="Clientes">
+        <div class="section-header" style="margin-bottom: 40px;">
+            <span class="section-label">Quem confia em nos</span>
+            <h2 class="section-title">Conheca alguns de nossos clientes</h2>
+        </div>
+        <div class="clients-track" aria-hidden="true">
+            <span class="client-logo">Petrobras</span>
+            <span class="client-logo">Itau</span>
+            <span class="client-logo">Bradesco</span>
+            <span class="client-logo">Vale</span>
+            <span class="client-logo">Ambev</span>
+            <span class="client-logo">Natura</span>
+            <span class="client-logo">Magalu</span>
+            <span class="client-logo">Santander</span>
+            <span class="client-logo">B3</span>
+            <span class="client-logo">Localiza</span>
+            <span class="client-logo">Petrobras</span>
+            <span class="client-logo">Itau</span>
+            <span class="client-logo">Bradesco</span>
+            <span class="client-logo">Vale</span>
+            <span class="client-logo">Ambev</span>
+            <span class="client-logo">Natura</span>
+            <span class="client-logo">Magalu</span>
+            <span class="client-logo">Santander</span>
+            <span class="client-logo">B3</span>
+            <span class="client-logo">Localiza</span>
         </div>
     </section>
 
     <!-- Testimonials -->
-    <section class="section testimonials" id="depoimentos">
+    <section class="section section-dark" id="depoimentos">
         <div class="container">
-            <div class="section-header fade-in">
-                <span class="section-label">O que Dizem Nossos Clientes</span>
+            <div class="section-header reveal">
+                <span class="section-label">O que dizem nossos clientes</span>
                 <h2 class="section-title">Depoimentos</h2>
-                <p class="section-desc">A satisfacao dos nossos clientes e o reflexo do valor que agregamos a cada experiencia.</p>
+                <p class="section-desc">Nosso time de especialistas esta pronto para te ajudar. Veja o que dizem quem ja contratou.</p>
             </div>
             <div class="testimonials-grid">
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                <article class="testimonial-card reveal">
+                    <div class="testimonial-stars" aria-label="5 estrelas">
+                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
                     </div>
-                    <p class="testimonial-text">A experiencia com a Palestrante Brasil foi extremamente positiva. Contratamos o palestrante com uma expectativa e a palestra conseguiu superar em todos os aspectos, nao so em conteudo, mas em todo o processo de contratacao.</p>
+                    <p class="testimonial-text">"So agradecer, mesmo. Atendimento de excelencia e paciencia em me ajudar a solucionar os tramites internos. Palestrante Brasil, voces sao otimos nisso!"</p>
                     <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" alt="Roberto Campos" loading="lazy">
                         <div class="testimonial-author-info">
                             <h4>Roberto Campos</h4>
                             <p>Diretor de RH - Itau Unibanco</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </article>
+                <article class="testimonial-card reveal reveal-delay-1">
+                    <div class="testimonial-stars" aria-label="5 estrelas">
+                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
                     </div>
-                    <p class="testimonial-text">Gosto muito da jovialidade e profissionalismo da equipe. E atual, moderna e um grande diferencial. Com certeza vale a pena contratar! Tanto que ja fizemos diversos eventos e estamos super satisfeitos com os resultados.</p>
+                    <p class="testimonial-text">"A experiencia foi extremamente positiva. A palestra superou todas as expectativas, nao so em conteudo, mas em todo o processo de contratacao."</p>
                     <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" alt="Ana Paula Ferreira" loading="lazy">
                         <div class="testimonial-author-info">
                             <h4>Ana Paula Ferreira</h4>
                             <p>Gerente de Eventos - Natura</p>
                         </div>
                     </div>
-                </div>
-                <div class="testimonial-card fade-in">
-                    <div class="testimonial-stars">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                </article>
+                <article class="testimonial-card reveal reveal-delay-2">
+                    <div class="testimonial-stars" aria-label="5 estrelas">
+                        <i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i><i class="fas fa-star" aria-hidden="true"></i>
                     </div>
-                    <p class="testimonial-text">Fui extremamente bem atendida desde o primeiro contato. Deram todo o suporte necessario desde o momento da contratacao ate o dia do evento. As escolhas dos palestrantes foram perfeitas e tornaram nosso evento ainda mais rico.</p>
+                    <p class="testimonial-text">"Fui extremamente bem atendida desde o primeiro contato. Deram todo o suporte necessario. As escolhas dos palestrantes foram perfeitas."</p>
                     <div class="testimonial-author">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Cliente">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face" alt="Juliana Martins" loading="lazy">
                         <div class="testimonial-author-info">
                             <h4>Juliana Martins</h4>
-                            <p>Coordenadora de Convencoes - Bradesco</p>
+                            <p>Coordenadora - Bradesco</p>
                         </div>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
-
-    <!-- CTA Section -->
-    <section class="cta" id="contato">
-        <div class="cta-bg"></div>
+    <!-- Contact Section -->
+    <section class="section contact-section" id="contato">
         <div class="container">
-            <div class="cta-content">
-                <h2>Pronto para transformar seu proximo evento?</h2>
-                <p>Entre em contato conosco e descubra como podemos ajudar a criar uma experiencia memoravel para sua equipe. Orcamento sem compromisso.</p>
-                <a href="#" class="cta-btn">
-                    <i class="fab fa-whatsapp"></i>
-                    Solicitar Orcamento Agora
-                </a>
+            <div class="section-header reveal">
+                <span class="section-label">Fale conosco</span>
+                <h2 class="section-title">Entre em Contato</h2>
+                <p class="section-desc">Voce pode falar com a gente atraves do formulario abaixo. Nosso time de especialistas esta pronto para te ajudar.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info reveal">
+                    <h3>Vamos conversar?</h3>
+                    <p>Seja para contratar um palestrante, desenvolver sua carreira ou tirar duvidas, estamos aqui para voce.</p>
+                    <div class="contact-item">
+                        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+                        <div>
+                            <h4>WhatsApp</h4>
+                            <p>(11) 98765-4321</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 3456-7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
+                        <div>
+                            <h4>E-mail</h4>
+                            <p>contato@palestrantebrasil.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                        <div>
+                            <h4>Endereco</h4>
+                            <p>Av. Paulista, 1000 - Sao Paulo, SP</p>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form reveal reveal-delay-1" action="#" method="POST" aria-label="Formulario de contato">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nome">Nome completo</label>
+                            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999">
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" name="empresa" placeholder="Nome da empresa">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="assunto">Assunto</label>
+                        <select id="assunto" name="assunto" required>
+                            <option value="">Selecione um assunto</option>
+                            <option value="contratar">Quero contratar um palestrante</option>
+                            <option value="ser-palestrante">Quero ser palestrante</option>
+                            <option value="duvida">Tire minhas duvidas</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" placeholder="Conte-nos sobre seu evento ou duvida..."></textarea>
+                    </div>
+                    <button type="submit" class="form-submit">
+                        <i class="fas fa-paper-plane" aria-hidden="true"></i>
+                        Enviar Mensagem
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <img src="image.png" alt="Palestrante Brasil">
+                    <a href="#" class="logo" aria-label="Palestrante Brasil">
+                        <img src="image.png" alt="Logo Palestrante Brasil" width="45" height="45" loading="lazy">
                         <div class="logo-text">
                             <span class="brand-name">PALESTRANTE <span>BRASIL</span></span>
                             <span class="brand-tagline">Agencia de Palestrantes</span>
                         </div>
                     </a>
-                    <p>A <strong>Palestrante Brasil</strong> e especialista em conectar empresas aos melhores palestrantes do Brasil. Transformamos eventos em experiencias inesqueciveis.</p>
+                    <p>A <strong>Palestrante Brasil</strong> e especialista em conectar empresas aos melhores palestrantes do pais. Transformamos eventos em experiencias inesqueciveis.</p>
                     <div class="footer-social">
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
-                    <h4>Links Rapidos</h4>
+                    <h4>Institucional</h4>
                     <ul>
-                        <li><a href="#">Sobre Nos</a></li>
-                        <li><a href="#">Palestrantes</a></li>
-                        <li><a href="#">Categorias</a></li>
+                        <li><a href="#sobre">Sobre Nos</a></li>
+                        <li><a href="#servicos">Nossos Servicos</a></li>
+                        <li><a href="#palestrantes">Palestrantes</a></li>
+                        <li><a href="#contato">Contato</a></li>
                         <li><a href="#">Blog</a></li>
-                        <li><a href="#">Trabalhe Conosco</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
-                    <h4>Categorias</h4>
+                    <h4>Servicos</h4>
                     <ul>
-                        <li><a href="#">Lideranca</a></li>
-                        <li><a href="#">Motivacao</a></li>
-                        <li><a href="#">Inovacao</a></li>
-                        <li><a href="#">Vendas</a></li>
-                        <li><a href="#">Saude &amp; Bem-estar</a></li>
+                        <li><a href="#">Contratar Palestrante</a></li>
+                        <li><a href="#">Ser Palestrante</a></li>
+                        <li><a href="#">Conteudo Exclusivo</a></li>
+                        <li><a href="#">Mentoria</a></li>
+                        <li><a href="#">Eventos Corporativos</a></li>
                     </ul>
                 </div>
-                <div class="footer-column footer-contact">
-                    <h4>Contato</h4>
-                    <p><i class="fas fa-map-marker-alt"></i> Av. Paulista, 1000 - Sao Paulo, SP</p>
-                    <p><i class="fas fa-phone"></i> (11) 3456-7890</p>
-                    <p><i class="fab fa-whatsapp"></i> (11) 98765-4321</p>
-                    <p><i class="fas fa-envelope"></i> contato@palestrantebrasil.com.br</p>
+                <div class="footer-column">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Politica de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 Palestrante Brasil. Todos os direitos reservados.</p>
-                <p>Desenvolvido com <i class="fas fa-heart" style="color: var(--accent);"></i> para inspirar</p>
+                <p>Desenvolvido com <i class="fas fa-heart" style="color: var(--accent);" aria-hidden="true"></i> para inspirar</p>
             </div>
         </div>
     </footer>
@@ -754,63 +1364,107 @@
         const mobileMenu = document.getElementById('mobileMenu');
         const mobileMenuClose = document.getElementById('mobileMenuClose');
         const overlay = document.getElementById('overlay');
-        function openMenu() { mobileMenu.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
-        function closeMenu() { mobileMenu.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        }
         mobileMenuBtn.addEventListener('click', openMenu);
         mobileMenuClose.addEventListener('click', closeMenu);
         overlay.addEventListener('click', closeMenu);
-        document.querySelectorAll('.mobile-menu a').forEach(link => { link.addEventListener('click', closeMenu); });
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
 
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
-                if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                if (target) {
+                    const offset = 80;
+                    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+                }
             });
         });
 
-        // Fade in animation
-        const fadeElements = document.querySelectorAll('.fade-in');
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
-        }, { threshold: 0.1 });
-        fadeElements.forEach(el => observer.observe(el));
-
-        // Generate particles
-        const particlesContainer = document.getElementById('particles');
-        for (let i = 0; i < 30; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 15 + 's';
-            particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-            particle.style.width = (2 + Math.random() * 4) + 'px';
-            particle.style.height = particle.style.width;
-            particlesContainer.appendChild(particle);
-        }
+        // Reveal on scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
 
         // Counter animation
-        const stats = document.querySelectorAll('.stat-item h3');
+        const statNumbers = document.querySelectorAll('.stat-item .number');
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const target = entry.target;
-                    const text = target.textContent;
-                    const num = parseInt(text.replace(/[^0-9]/g, ''));
-                    const suffix = text.replace(/[0-9]/g, '');
-                    let current = 0;
-                    const increment = num / 50;
-                    const timer = setInterval(() => {
-                        current += increment;
-                        if (current >= num) { target.textContent = text; clearInterval(timer); }
-                        else target.textContent = Math.floor(current) + suffix;
-                    }, 30);
+                    const finalValue = parseInt(target.getAttribute('data-target'));
+                    const duration = 2000;
+                    const startTime = performance.now();
+
+                    function updateCounter(currentTime) {
+                        const elapsed = currentTime - startTime;
+                        const progress = Math.min(elapsed / duration, 1);
+                        const easeOut = 1 - Math.pow(1 - progress, 3);
+                        const current = Math.floor(easeOut * finalValue);
+
+                        if (finalValue >= 1000000) {
+                            target.textContent = (current / 1000000).toFixed(1) + 'M+';
+                        } else if (finalValue >= 1000) {
+                            target.textContent = (current / 1000).toFixed(0) + 'K+';
+                        } else {
+                            target.textContent = current + '+';
+                        }
+
+                        if (progress < 1) {
+                            requestAnimationFrame(updateCounter);
+                        } else {
+                            if (finalValue >= 1000000) target.textContent = (finalValue / 1000000).toFixed(1) + 'M+';
+                            else if (finalValue >= 1000) target.textContent = (finalValue / 1000).toFixed(0) + 'K+';
+                            else target.textContent = finalValue + '+';
+                        }
+                    }
+                    requestAnimationFrame(updateCounter);
                     statsObserver.unobserve(target);
                 }
             });
         }, { threshold: 0.5 });
-        stats.forEach(stat => statsObserver.observe(stat));
+        statNumbers.forEach(stat => statsObserver.observe(stat));
+
+        // Form submission handler
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('.form-submit');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fas fa-check"></i> Mensagem enviada!';
+                btn.style.background = '#28a745';
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
+                    btn.disabled = false;
+                    this.reset();
+                }, 2000);
+            }, 1500);
+        });
     </script>
 </body>
 </html>
