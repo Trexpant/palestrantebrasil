@@ -1091,7 +1091,522 @@
         </div>
     </section>
 
-    <!-- Featured Speaker - Roberto Patzlaff -->
+        <!-- Speaker Carousel Section -->
+    <style>
+        /* Speaker Carousel */
+        .speaker-carousel-section {
+            background: linear-gradient(180deg, var(--dark) 0%, #0a1628 50%, var(--dark) 100%);
+            position: relative;
+            overflow: hidden;
+            padding: 100px 0;
+        }
+        .speaker-carousel-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(201, 168, 76, 0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .speaker-carousel-section .section-header {
+            position: relative;
+            z-index: 2;
+        }
+        .speaker-carousel-section .section-title {
+            color: var(--white);
+        }
+        .speaker-carousel-section .section-desc {
+            color: rgba(255,255,255,0.6);
+        }
+        .speaker-carousel-section .section-label {
+            color: var(--accent);
+        }
+
+        /* Carousel Container */
+        .carousel-wrapper {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            z-index: 2;
+        }
+        .carousel-container {
+            overflow: hidden;
+            position: relative;
+            padding: 20px 0 40px;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 25px;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+
+        /* Speaker Card */
+        .speaker-carousel-card {
+            flex: 0 0 320px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+        .speaker-carousel-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.1), 0 0 0 1px rgba(0, 212, 255, 0.1);
+        }
+        .speaker-carousel-card .card-image-wrap {
+            position: relative;
+            height: 380px;
+            overflow: hidden;
+        }
+        .speaker-carousel-card .card-image-wrap img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s;
+        }
+        .speaker-carousel-card:hover .card-image-wrap img {
+            transform: scale(1.08);
+        }
+        .speaker-carousel-card .card-image-wrap::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 70%;
+            background: linear-gradient(to top, rgba(5,5,5,0.95) 0%, rgba(5,5,5,0.3) 50%, transparent 100%);
+            transition: height 0.4s;
+        }
+        .speaker-carousel-card:hover .card-image-wrap::after {
+            height: 85%;
+        }
+
+        /* Card Overlay Content */
+        .card-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 25px;
+            z-index: 2;
+            transform: translateY(20px);
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+        .speaker-carousel-card:hover .card-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .card-overlay .speaker-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 4px;
+        }
+        .card-overlay .speaker-role {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 12px;
+        }
+        .card-overlay .speaker-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 15px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s 0.1s;
+        }
+        .speaker-carousel-card:hover .card-overlay .speaker-topics {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-overlay .speaker-topics span {
+            background: rgba(0, 212, 255, 0.15);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            color: var(--accent);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .card-overlay .speaker-social {
+            display: flex;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s 0.15s;
+        }
+        .speaker-carousel-card:hover .card-overlay .speaker-social {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .card-overlay .speaker-social a {
+            width: 36px; height: 36px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+        }
+        .card-overlay .speaker-social a:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* Badge */
+        .speaker-badge-carousel {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            z-index: 3;
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+        .speaker-badge-carousel.gold {
+            background: var(--gold);
+            box-shadow: 0 4px 15px rgba(201, 168, 76, 0.3);
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 40px;
+            position: relative;
+            z-index: 2;
+        }
+        .carousel-btn {
+            width: 50px; height: 50px;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: var(--white);
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+        .carousel-btn:hover {
+            background: var(--accent);
+            color: var(--dark);
+            border-color: var(--accent);
+            transform: scale(1.1);
+        }
+        .carousel-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .carousel-btn:disabled:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--white);
+            border-color: rgba(255,255,255,0.1);
+        }
+        .carousel-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .carousel-dot {
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .carousel-dot.active {
+            background: var(--accent);
+            width: 30px;
+            border-radius: 5px;
+        }
+        .carousel-dot:hover {
+            background: rgba(255,255,255,0.4);
+        }
+
+        /* View All Button */
+        .view-all-wrap {
+            text-align: center;
+            margin-top: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Drag hint */
+        .drag-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 0.8rem;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .drag-hint i {
+            animation: swipeHint 2s ease-in-out infinite;
+        }
+        @keyframes swipeHint {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(8px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .speaker-carousel-card { flex: 0 0 280px; }
+            .speaker-carousel-card .card-image-wrap { height: 340px; }
+        }
+        @media (max-width: 768px) {
+            .speaker-carousel-card { flex: 0 0 260px; }
+            .speaker-carousel-card .card-image-wrap { height: 320px; }
+            .carousel-wrapper { padding: 0 15px; }
+            .speaker-carousel-section { padding: 60px 0; }
+        }
+        @media (max-width: 480px) {
+            .speaker-carousel-card { flex: 0 0 240px; }
+            .speaker-carousel-card .card-image-wrap { height: 300px; }
+            .card-overlay { padding: 20px; }
+            .card-overlay .speaker-name { font-size: 1.1rem; }
+        }
+    </style>
+
+    <section class="section speaker-carousel-section" id="palestrantes" aria-label="Nossos Palestrantes">
+        <div class="section-header reveal">
+            <span class="section-label">Nossos Talentos</span>
+            <h2 class="section-title">Palestrantes em Destaque</h2>
+            <p class="section-desc">Conheca os profissionais mais requisitados do nosso catalogo. Cada um traz experiencia unica e conteudo de alto impacto para transformar seu evento.</p>
+        </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-container">
+                <div class="carousel-track" id="speakerTrack" role="list">
+
+                    <!-- Speaker 1 -->
+                    <article class="speaker-carousel-card reveal" role="listitem">
+                        <span class="speaker-badge-carousel">Top Rated</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=500&fit=crop&crop=face" alt="Ricardo Mendes - Especialista em Lideranca" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Ricardo Mendes</h3>
+                                <p class="speaker-role">Especialista em Lideranca</p>
+                                <div class="speaker-topics">
+                                    <span>Lideranca</span>
+                                    <span>Gestao</span>
+                                    <span>Cultura</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Ricardo Mendes"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Ricardo Mendes"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Ricardo Mendes"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 2 -->
+                    <article class="speaker-carousel-card reveal reveal-delay-1" role="listitem">
+                        <span class="speaker-badge-carousel gold">Mais Contratada</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face" alt="Carolina Andrade - Coach Executiva" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Carolina Andrade</h3>
+                                <p class="speaker-role">Coach Executiva</p>
+                                <div class="speaker-topics">
+                                    <span>Motivacao</span>
+                                    <span>Performance</span>
+                                    <span>Resiliencia</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Carolina Andrade"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Carolina Andrade"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Carolina Andrade"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 3 -->
+                    <article class="speaker-carousel-card reveal reveal-delay-2" role="listitem">
+                        <span class="speaker-badge-carousel">Inovacao</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face" alt="Felipe Torres - Especialista em Inovacao Digital" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Felipe Torres</h3>
+                                <p class="speaker-role">Inovacao Digital</p>
+                                <div class="speaker-topics">
+                                    <span>IA</span>
+                                    <span>Transformacao</span>
+                                    <span>Startups</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Felipe Torres"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Felipe Torres"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Felipe Torres"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 4 -->
+                    <article class="speaker-carousel-card reveal" role="listitem">
+                        <span class="speaker-badge-carousel">Saude</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face" alt="Marina Costa - Medica e Especialista em Bem-estar" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Marina Costa</h3>
+                                <p class="speaker-role">Saude & Bem-estar</p>
+                                <div class="speaker-topics">
+                                    <span>Mindfulness</span>
+                                    <span>Burnout</span>
+                                    <span>Qualidade</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Marina Costa"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Marina Costa"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Marina Costa"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 5 -->
+                    <article class="speaker-carousel-card reveal reveal-delay-1" role="listitem">
+                        <span class="speaker-badge-carousel gold">Premium</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&crop=face" alt="Andre Souza - Economista e Consultor" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Andre Souza</h3>
+                                <p class="speaker-role">Economista</p>
+                                <div class="speaker-topics">
+                                    <span>Economia</span>
+                                    <span>Financas</span>
+                                    <span>Mercado</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Andre Souza"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Andre Souza"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Andre Souza"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 6 -->
+                    <article class="speaker-carousel-card reveal reveal-delay-2" role="listitem">
+                        <span class="speaker-badge-carousel">Vendas</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=500&fit=crop&crop=face" alt="Patricia Lima - Especialista em Vendas" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Patricia Lima</h3>
+                                <p class="speaker-role">Especialista em Vendas</p>
+                                <div class="speaker-topics">
+                                    <span>Vendas</span>
+                                    <span>Negociacao</span>
+                                    <span>Relacionamento</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Patricia Lima"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Patricia Lima"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Patricia Lima"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 7 -->
+                    <article class="speaker-carousel-card reveal" role="listitem">
+                        <span class="speaker-badge-carousel">Diversidade</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&h=500&fit=crop&crop=face" alt="Lucas Oliveira - Especialista em Diversidade" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Lucas Oliveira</h3>
+                                <p class="speaker-role">Diversidade & Inclusao</p>
+                                <div class="speaker-topics">
+                                    <span>DEI</span>
+                                    <span>Equidade</span>
+                                    <span>Cultura</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Lucas Oliveira"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Lucas Oliveira"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Lucas Oliveira"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Speaker 8 -->
+                    <article class="speaker-carousel-card reveal reveal-delay-1" role="listitem">
+                        <span class="speaker-badge-carousel gold">IE</span>
+                        <div class="card-image-wrap">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop&crop=face" alt="Fernanda Rocha - Especialista em Inteligencia Emocional" loading="lazy">
+                            <div class="card-overlay">
+                                <h3 class="speaker-name">Fernanda Rocha</h3>
+                                <p class="speaker-role">Inteligencia Emocional</p>
+                                <div class="speaker-topics">
+                                    <span>Emocoes</span>
+                                    <span>Comunicacao</span>
+                                    <span>Autoconhecimento</span>
+                                </div>
+                                <div class="speaker-social">
+                                    <a href="#" aria-label="LinkedIn de Fernanda Rocha"><i class="fab fa-linkedin-in"></i></a>
+                                    <a href="#" aria-label="Instagram de Fernanda Rocha"><i class="fab fa-instagram"></i></a>
+                                    <a href="#" aria-label="YouTube de Fernanda Rocha"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="carousel-nav">
+                <button class="carousel-btn" id="prevBtn" aria-label="Palestrante anterior">
+                    <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <div class="carousel-dots" id="carouselDots" role="tablist" aria-label="Navegacao do carrossel"></div>
+                <button class="carousel-btn" id="nextBtn" aria-label="Proximo palestrante">
+                    <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <p class="drag-hint" aria-hidden="true">
+                <i class="fas fa-hand-pointer"></i>
+                Arraste para explorar todos os palestrantes
+            </p>
+        </div>
+
+        <div class="view-all-wrap reveal">
+            <a href="#" class="btn-primary">
+                <i class="fas fa-th-large" aria-hidden="true"></i>
+                Ver Todos os Palestrantes
+            </a>
+        </div>
+    </section>
+
+<!-- Featured Speaker - Roberto Patzlaff -->
     <section class="section featured-speaker-section" id="destaque">
         <div class="container">
             <div class="section-header reveal">
@@ -1446,6 +1961,197 @@
             });
         }, { threshold: 0.5 });
         statNumbers.forEach(stat => statsObserver.observe(stat));
+
+        // Speaker Carousel
+        (function() {
+            const track = document.getElementById('speakerTrack');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('carouselDots');
+
+            if (!track) return;
+
+            const cards = track.querySelectorAll('.speaker-carousel-card');
+            let currentIndex = 0;
+            let cardWidth = 320 + 25; // card width + gap
+            let visibleCards = 4;
+            let isDragging = false;
+            let startX = 0;
+            let scrollLeft = 0;
+            let autoScrollInterval;
+
+            function updateVisibleCards() {
+                const containerWidth = track.parentElement.offsetWidth;
+                if (window.innerWidth <= 480) {
+                    visibleCards = 1;
+                    cardWidth = 240 + 25;
+                } else if (window.innerWidth <= 768) {
+                    visibleCards = 1;
+                    cardWidth = 260 + 25;
+                } else if (window.innerWidth <= 1024) {
+                    visibleCards = 2;
+                    cardWidth = 280 + 25;
+                } else {
+                    visibleCards = 4;
+                    cardWidth = 320 + 25;
+                }
+            }
+
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                const totalSlides = Math.ceil(cards.length / visibleCards);
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Ir para pagina ' + (i + 1));
+                    dot.setAttribute('role', 'tab');
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.carousel-dot');
+                const activeSlide = Math.floor(currentIndex / visibleCards);
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === activeSlide);
+                });
+            }
+
+            function updateButtons() {
+                prevBtn.disabled = currentIndex <= 0;
+                nextBtn.disabled = currentIndex >= cards.length - visibleCards;
+            }
+
+            function goToSlide(index) {
+                currentIndex = Math.max(0, Math.min(index, cards.length - visibleCards));
+                const offset = currentIndex * cardWidth;
+                track.style.transform = 'translateX(-' + offset + 'px)';
+                updateDots();
+                updateButtons();
+            }
+
+            prevBtn.addEventListener('click', () => goToSlide(currentIndex - 1));
+            nextBtn.addEventListener('click', () => goToSlide(currentIndex + 1));
+
+            // Touch/Drag support
+            track.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                startX = e.pageX - track.offsetLeft;
+                scrollLeft = currentIndex * cardWidth;
+                track.style.cursor = 'grabbing';
+                track.style.transition = 'none';
+            });
+
+            track.addEventListener('mouseleave', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    track.style.cursor = 'grab';
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    snapToNearest();
+                }
+            });
+
+            track.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    track.style.cursor = 'grab';
+                    track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                    snapToNearest();
+                }
+            });
+
+            track.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                e.preventDefault();
+                const x = e.pageX - track.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                const newOffset = scrollLeft - walk;
+                track.style.transform = 'translateX(-' + newOffset + 'px)';
+            });
+
+            function snapToNearest() {
+                const currentTransform = track.style.transform;
+                const match = currentTransform.match(/translateX\(([-\d.]+)px\)/);
+                const currentOffset = match ? parseFloat(match[1]) : currentIndex * cardWidth;
+                const nearestIndex = Math.round(currentOffset / cardWidth);
+                goToSlide(nearestIndex);
+            }
+
+            // Touch events for mobile
+            let touchStartX = 0;
+            track.addEventListener('touchstart', (e) => {
+                touchStartX = e.touches[0].clientX;
+                track.style.transition = 'none';
+            }, { passive: true });
+
+            track.addEventListener('touchmove', (e) => {
+                const touchX = e.touches[0].clientX;
+                const diff = touchStartX - touchX;
+                const newOffset = (currentIndex * cardWidth) + diff;
+                track.style.transform = 'translateX(-' + newOffset + 'px)';
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                track.style.transition = 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+                const touchEndX = e.changedTouches[0].clientX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    if (diff > 0) {
+                        goToSlide(currentIndex + 1);
+                    } else {
+                        goToSlide(currentIndex - 1);
+                    }
+                } else {
+                    goToSlide(currentIndex);
+                }
+            }, { passive: true });
+
+            // Keyboard navigation
+            track.parentElement.setAttribute('tabindex', '0');
+            track.parentElement.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    goToSlide(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    goToSlide(currentIndex + 1);
+                }
+            });
+
+            // Auto-scroll (pausa on hover)
+            function startAutoScroll() {
+                autoScrollInterval = setInterval(() => {
+                    if (currentIndex >= cards.length - visibleCards) {
+                        goToSlide(0);
+                    } else {
+                        goToSlide(currentIndex + 1);
+                    }
+                }, 5000);
+            }
+
+            track.parentElement.addEventListener('mouseenter', () => {
+                clearInterval(autoScrollInterval);
+            });
+
+            track.parentElement.addEventListener('mouseleave', () => {
+                startAutoScroll();
+            });
+
+            // Initialize
+            updateVisibleCards();
+            createDots();
+            updateButtons();
+            startAutoScroll();
+
+            window.addEventListener('resize', () => {
+                updateVisibleCards();
+                createDots();
+                goToSlide(0);
+            });
+
+            track.style.cursor = 'grab';
+        })();
 
         // Form submission handler
         document.querySelector('.contact-form').addEventListener('submit', function(e) {
